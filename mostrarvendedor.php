@@ -1,9 +1,12 @@
 <?php
 
+/* iniciar la sesión */
+
 session_start();
 include "config/database.php";
 $db = new Database();
 $con = $db->conectar();
+
 
 
 
@@ -93,6 +96,7 @@ if (isset($_POST['Eliminar'])) {
 }
 //----------------------------- 
 
+
 ?>
 
 
@@ -107,26 +111,27 @@ if (isset($_POST['Eliminar'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="CSS/style.css">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Document</title>
+    
 </head>
 <header>
-
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="#" class="navbar-brand">
                 <strong>Automotora</strong>
-
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+
             <div class="collapse navbar-collapse" id="navbarHeader">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="buscar.php" class="nav-link">Agregar Vendedor</a>
+                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
                     </li>
                     <li class="nav-item">
                         <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>
@@ -135,7 +140,7 @@ if (isset($_POST['Eliminar'])) {
                         <a href="listarall.php" class="nav-link">Listado de Vendedores </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Listado de Vehiculos </a>
+                        <a href="agregarvendedor.php" class="nav-link">Listado de Vehiculos </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Listado de Clientes </a>
@@ -148,7 +153,6 @@ if (isset($_POST['Eliminar'])) {
         </div>
     </div>
 </header>
-
 <body>
     <div class="container">
         <div name="centrado" style="text-align: center;">

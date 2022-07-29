@@ -38,30 +38,41 @@ if (!$con){
 <body>
     <!--Barra de navegación-->
     <header>
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a href="#" class="navbar-brand">
-                    <strong>Tienda Online</strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <strong>Automotora</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarHeader">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">Catalogo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Contacto</a>
-                        </li>
-                    </ul>
-                    <a href="login.php" class="btn btn-primary">Login</a>
-                </div>
+
+            <div class="collapse navbar-collapse" id="navbarHeader">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="listarall.php" class="nav-link">Listado de Vendedores </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agregarvendedor.php" class="nav-link">Listado de Vehiculos </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Listado de Clientes </a>
+                    </li>
+                </ul>
+                <form method="post">
+                    <button name='cerrar' type="submit" class="btn btn-primary btn-block btn-large">Cerrar session</button>
+                </form>
             </div>
         </div>
-    </header>
-
+    </div>
+</header>
     <!--Contenido-->
     <main>
         <div class="container">

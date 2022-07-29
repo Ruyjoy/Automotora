@@ -57,7 +57,7 @@ if (isset($_POST['cerrar'])) {
             <div class="collapse navbar-collapse" id="navbarHeader">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="buscar.php" class="nav-link">Agregar Vendedor</a>
+                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
                     </li>
                     <li class="nav-item">
                         <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>

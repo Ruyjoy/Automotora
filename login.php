@@ -3,58 +3,58 @@
 
 session_start();
 
-    if (isset($_GET['cerrar_sesion'])) {
-        
-        session_unset();
-        session_destroy();
-    }
-    
-    function page($se){
-        switch($se){
-            case 1:
-                header('location: administrador.php');
+if (isset($_GET['cerrar_sesion'])) {
+
+    session_unset();
+    session_destroy();
+}
+
+function page($se)
+{
+    switch ($se) {
+        case 1:
+            header('location: administrador.php');
             break;
-            case 2:
-                header('location: vendedor.php');
+        case 2:
+            header('location: vendedor.php');
             break;
 
-            default:
-        }
+        default:
     }
+}
 
-    if (isset($_SESSION['rol'])) {
+if (isset($_SESSION['rol'])) {
+    page($_SESSION['rol']);
+}
+
+if (isset($_POST['enviar'])) {
+
+    include "config/database.php";
+    $db = new Database();
+    $con = $db->conectar();
+
+    $nombre = $_POST['c'];
+    $pass = $_POST['p'];
+
+    $consulta = "SELECT * FROM usuario Where ci = $nombre AND pass = '$pass'";
+    $resultado = mysqli_query($con, $consulta);
+
+    //Si existe en base de datos -------
+    if ($fila = mysqli_fetch_assoc($resultado)) {
+
+
+        $alert = "Estoy";
+        // print_r($fila);
+
+        $_SESSION['rol']       = $fila['rol'];
+
+        //lo envido a su pagina-------
         page($_SESSION['rol']);
+    } else {
+
+        $alert = "Cedula o  Password son Incorrecto";
     }
- 
-    if (isset($_POST['enviar'])) {
-
-        include "config/database.php";
-        $db = new Database();
-        $con = $db->conectar();
-        
-        $nombre = $_POST['c'];
-        $pass = $_POST['p'];
-
-        $consulta = "SELECT * FROM usuario Where ci = $nombre AND pass = '$pass'";
-        $resultado = mysqli_query($con, $consulta);
-
-        //Si existe en base de datos -------
-        if ($fila = mysqli_fetch_assoc($resultado)) {
-
-            
-            $alert = "Estoy";
-           // print_r($fila);
-           
-            $_SESSION['rol']       = $fila['rol'];
-
-            //lo envido a su pagina-------
-            page($_SESSION['rol']);
-
-        } else {
-
-            $alert = "Cedula o  Password son Incorrecto";
-        }
-    } 
+}
 ?>
 
 
@@ -65,22 +65,45 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
-<body>
+<body class = "cuerpo">
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="titu">
+                            <h3 class="text-center font-weight-light my-4">Login</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputEmailAddress">Cedula</label>
+                                    <input class="form-control py-4" required="required" type="number" name="c" placeholder="Cedula" pattern="[0-9]+" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputPassword">Password</label>
+                                    <input class="form-control py-4" required="required" type="password" placeholder="Password" name="p" />
+                                </div>
+                                <div class="form-group">
+                                <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
+                                </div>
 
-    <div class="login">
-        <h1>Login</h1>
-        <form method="post">
-            <input type="number" name="c" placeholder="Cedula" required="required" pattern="[0-9]+" />
-            <input type="password" name="p" placeholder="Password" required="required" />
-            <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
-            <button name='enviar' type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-        </form>
-    </div>
-
+                                
+                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                    <button name='enviar' type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

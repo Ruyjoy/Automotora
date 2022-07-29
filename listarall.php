@@ -49,20 +49,20 @@ $cant_filas = mysqli_num_rows($resultado);
     <title>Document</title>
 </head>
 <header>
-
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="#" class="navbar-brand">
                 <strong>Automotora</strong>
-
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+
             <div class="collapse navbar-collapse" id="navbarHeader">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                   <li class="nav-item">
-                        <a href="buscar.php" class="nav-link">Agregar Vendedor</a>
+                    <li class="nav-item">
+                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
                     </li>
                     <li class="nav-item">
                         <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>
@@ -71,7 +71,7 @@ $cant_filas = mysqli_num_rows($resultado);
                         <a href="listarall.php" class="nav-link">Listado de Vendedores </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Listado de Vehiculos </a>
+                        <a href="agregarvendedor.php" class="nav-link">Listado de Vehiculos </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Listado de Clientes </a>
