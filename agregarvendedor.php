@@ -21,19 +21,32 @@ if (isset($_POST['cerrar'])) {
 
     session_unset();
     session_destroy();
-    header('location: login.php');
+    header('location: index.php');
 }
+//-----------------------------
+
+
+if ($cedu = $_GET['cedula'] == null) {
+    header('location: buscarvendedor.php');
+} else if (is_numeric($_GET['cedula'])) {
+    $cedu = $_GET['cedula'];
+} else {
+    header('location: buscarvendedor.php');
+    $cedu = $_GET['cedula'];
+}
+
+
 //-----------------------------
 //Agregar vendedor
 if (isset($_POST['crear'])) {
 
-    $cedula = $_POST['cedula'];
+    $cedula = $cedu;
     $pass = $_POST['pass'];
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
+    $apellido = $_POST['ape'];
     $direccion = $_POST['dir'];
     $telefono = $_POST['tel'];
-    $comision = $_POST['com'];
+    $comision = $_POST['comi'];
 
     $consulta = "INSERT INTO usuario(ci, pass, nombre, apellido, direccion, telefono, comision, rol )VALUES ($cedula, '$pass', '$nombre',  '$apellido',  '$direccion',  $telefono,  $comision, 2)";
     $resultado = mysqli_query($con, $consulta);
@@ -54,57 +67,21 @@ if (isset($_POST['crear'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="presentacion/style.css">
+<link rel="stylesheet" href="CSS/styles.css">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<header>
+<!--Barra de navegación-->
+<?php include "barradenavegacion.php";?>
 
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a href="#" class="navbar-brand">
-                <strong>Automotora</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-
-            <div class="collapse navbar-collapse" id="navbarHeader">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="listarall.php" class="nav-link">Listado de Vendedores </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agregarvendedor.php" class="nav-link">Listado de Vehiculos </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Listado de Clientes </a>
-                    </li>
-                </ul>
-                <form method="post">
-                    <button name='cerrar' type="submit" class="btn btn-primary btn-block btn-large">Cerrar session</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</header>
-
-
-<body>
+<body class="cuerpo">
 
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -115,7 +92,7 @@ if (isset($_POST['crear'])) {
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header">
-                                        <h3 class="text-center font-weight-light my-4">Create Account</h3>
+                                        <h3 class="text-center font-weight-light my-3">Create Account</h3>
                                     </div>
                                     <div class="card-body">
                                         <form method="POST">
@@ -123,49 +100,49 @@ if (isset($_POST['crear'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputCedula">Cedula</label>
-                                                        <input class="form-control py-4" name="cedula" required="required" type="text" placeholder="Enter cedula" />
+                                                        <input class="form-control py-2" name="cedula" required="required" type="text" placeholder=<?php echo $cedu?> disabled />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputLastName">Password</label>
-                                                        <input class="form-control py-4" name="pass" required="required" type="text" placeholder="Enter password" />
+                                                        <input class="form-control py-2" name="pass" required="required" type="text" placeholder="Enter password" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputLastName">Nombre</label>
-                                                        <input class="form-control py-4" name="nombre" required="required" type="text" placeholder="Enter nombre" />
+                                                        <input class="form-control py-2" name="nombre" required="required" type="text" placeholder="Enter nombre" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputLastName">Apellido</label>
-                                                        <input class="form-control py-4" name="ape" required="required" type="text" placeholder="Enter apellido" />
+                                                        <input class="form-control py-2" name="ape" required="required" type="text" placeholder="Enter apellido" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputLastName">Direccion</label>
-                                                        <input class="form-control py-4" name="dir" required="required" type="text" placeholder="Enter direccion" />
+                                                        <input class="form-control py-2" name="dir" required="required" type="text" placeholder="Enter direccion" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputLastName">Telefono</label>
-                                                        <input class="form-control py-4" name="tel" required="required" type="text" placeholder="Enter telefono" />
+                                                        <input class="form-control py-2" name="tel" required="required" type="number" placeholder="Enter telefono" />
                                                     </div>
                                                 </div>
 
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Comision</label>
-                                                <input class="form-control py-4" name="comi" required="required" type="number"  placeholder="Enter comision" />
+                                                <input class="form-control py-2" name="comi" required="required" type="number"  placeholder="Enter comision" />
                                             </div>
-                                            <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
-                                            <div class="form-group mt-4 mb-0">
+                                            <div class="form-group  mb-0">
                                                 <button class="btn btn-primary btn-block" name ="crear" >Create Account</button>
                                             </div>
+                                            <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
                                         </form>
                                     </div>
                                     

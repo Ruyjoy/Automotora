@@ -47,6 +47,7 @@ if (isset($_POST['enviar'])) {
         // print_r($fila);
 
         $_SESSION['rol']       = $fila['rol'];
+        $_SESSION['ci']       = $fila['ci'];
 
         //lo envido a su pagina-------
         page($_SESSION['rol']);
@@ -67,7 +68,7 @@ if (isset($_POST['enviar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Panel de Ingreso</title>
 </head>
 
 <body class = "cuerpo">
@@ -77,7 +78,7 @@ if (isset($_POST['enviar'])) {
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                         <div class="titu">
-                            <h3 class="text-center font-weight-light my-4">Login</h3>
+                            <h3 style= "color:#F5F5F5" class="text-center font-weight-light my-4 ">Login</h3>
                         </div>
                         <div class="card-body">
                             <form method="post">
@@ -94,8 +95,10 @@ if (isset($_POST['enviar'])) {
                                 </div>
 
                                 
-                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <button name='enviar' type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                                <div class="form-group align-items-center justify-content-between mt-4 mb-0">
+                                    <button name='enviar' type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                                    <input type="button" value="Regresar" class="btn btn-primary btn-block"
+                                    onClick="window.location = 'index.php'" />
                                 </div>
                             </form>
                         </div>

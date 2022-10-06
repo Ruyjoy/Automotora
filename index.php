@@ -1,105 +1,151 @@
-<?php
-
-include "config/database.php";
-$db = new Database();
-$con = $db->conectar();
-
-
-$consulta = "SELECT id , nombre, precio FROM productos WHERE activo=1";
-$resultado = mysqli_query($con,$consulta);
-
-
-$con=null;
-
-if (!$con){
-    echo "cerrada";
-}else{
-    echo"ok";
-}
-
-
-
-?>
-
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/estilo.css" />
+	<link rel="stylesheet" href="css/todo/nivo-slider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/todo/default/default.css" type="text/css" media="screen" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="jquery.nivo.slider.pack.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	<style>
+		body {
+			
+			font-family: Source, Tahoma, sans-serif;
+			color: #fff;
+			font-size: 14px;
+			text-shadow: 1px 1px 0px #000;
+		}
+	</style>
+	<title>Automotora BIOS</title>
 </head>
 
-<body>
-    <!--Barra de navegación-->
-    <header>
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a href="#" class="navbar-brand">
-                <strong>Automotora</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body id="home">
+	<div id="wrapper">
 
+		<!--__--__--__--__--__--  L O G O  &   N A V    B A R --__--___--__--__--__-->
+		<header>
+			<div id="logo">
+				<h1>Automotora <span id="iisrt"><span id="ii">IIIIIIIII</span> <span id="srt">JYB</span></span></h1>
+				<div id="tagline">
+					<h2>Trabajo final Bios 2022!</h2>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.php" id="homenav">Home</a></li>
 
-            <div class="collapse navbar-collapse" id="navbarHeader">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="buscarvendedor.php" class="nav-link">ABMVendedor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agregarcliente.php" class="nav-link">Agregar Cliente </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="listarall.php" class="nav-link">Listado de Vendedores </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agregarvendedor.php" class="nav-link">Listado de Vehiculos </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Listado de Clientes </a>
-                    </li>
-                </ul>
-                <form method="post">
-                    <button name='cerrar' type="submit" class="btn btn-primary btn-block btn-large">Cerrar session</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</header>
-    <!--Contenido-->
-    <main>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <?php foreach ($resultado as $row) { ?>
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="https://i.ibb.co/XCNWQHD/principal.jpg">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row["nombre"];?></h5>
-                                <p class="card-text">$ <?php echo number_format($row["precio"],0,".",",");?></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="detalles.php?id=<?php echo $row["id"];?>" class="btn btn-primary">Detalles</a>
-                                    </div>
-                                    <a href="#" class="btn btn-success">Agregar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </main>
+					<li><a href="login.php">Login</a></li>
+				</ul>
+			</nav>
+		</header>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		<!--__--__--__--__--  T H E    S L I D E R --__--__--__--___--__--__--__-->
+		<div class="slider-wrapper theme-default">
+			<div id="slider" class="nivoSlider">
+				<img src="images/slide5.jpg" alt="" />
+				<img src="images/slide6.jpg" alt="" />
+				<img src="images/slide3.jpg" alt="" />
+				<img src="images/slide4.jpg" alt="" />
+				<img src="images/slide7.jpg" alt="" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(window).load(function() {
+				$('#slider').nivoSlider({
+					pauseTime: 6000,
+				});
+			});
+		</script>
+
+		<!--__--__--__--__--  M A I N   C O N T E N T  --__--__--__--___--__--__-->
+		<section>
+			<div id="line">
+				<div class="dline"></div>
+				<h1> Services</h1>
+				<div class="dline"></div>
+			</div>
+			<div id="ourserv">
+				<article>
+					<h1></h1>
+					<img src="images/1a.jpg" alt="" />
+					<p>Nissa Versa  U$S 24.000</p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/2b.jpg" alt="" />
+					<p>Duster Oroch U$S 39.500 </p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+				<article class="lastarticle">
+					<h1></h1>
+					<img src="images/3c.jpg" alt="" />
+					<p>Duster Oroch U$S 19.500</p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/11.png" alt="" />
+					<p>Citroen Ds3 Sport THP U$S 17.990</p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/12.png" alt="" />
+					<p>Suzuki Celerio 1.0 Extra Full U$S 14.990</p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/13.png" alt="" />
+					<p>Ford Ecosport 1.6 Extra Full U$S 16.990</p>
+					<a href="" class="rm">Ver Mas</a>
+				</article>
+			</div>
+
+		<!--__--__--__--__--
+			<div id="sline">
+				<div class="sdline"></div>
+				<h1>Services</h1>
+				<div class="sdline"></div>
+			</div>
+			<div id="latestp">
+				<article>
+					<h1></h1>
+					<img src="images/1s.jpg" alt="" />
+					<p></p>
+					<a href="" class="rm">Read More</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/2s.jpg" alt="" />
+					<p></p>
+					<a href="" class="rm">Read More</a>
+				</article>
+				<article>
+					<h1></h1>
+					<img src="images/3s.jpg" alt="" />
+					<p></p>
+					<a href="" class="rm">Read More</a>
+				</article>
+				<article class="lastarticle">
+					<h1></h1>
+					<img src="images/4s.jpg" alt="" />
+					<p></p>
+					<a href="" class="rm">Read More</a>
+				</article>
+			</div>
+		</section>
+		--__--__--__--___--__--__-->
+		<!--__--__--__--__--  T H E    F O O T E R --__--__--__--___--__--__--__-->
+		<footer>
+			<p>Copyright &copy 2022 , Design From Jose Y Bruno. All Rights Reserved.</p>
+		</footer>
+	</div>
 </body>
 
 </html>

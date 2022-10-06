@@ -21,7 +21,7 @@ if (isset($_POST['cerrar'])) {
 
     session_unset();
     session_destroy();
-    header('location: login.php');
+    header('location: index.php');
 
 }
 ?>
@@ -34,14 +34,23 @@ if (isset($_POST['cerrar'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendedores</title>
+    <link rel="stylesheet" href="Css/styles.css">
+    <style>
+        body{
+            background-image: url('imagenes/fiat-mobi-2021.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;          
+        }
+    </style>
+   
+   
 </head>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"><!-- Bootstrap CSS -->
 <body>
-    <h1> Vendedor </h1>
-    <form method="post">
-            <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
-            <button name = 'cerrar' type="submit" class="btn btn-primary btn-block btn-large">Cerrar session</button>
-        </form>
 
-
+<!--Barra de navegación-->
+<?php include "barradenavegacionvendedro.php";?>
+    
 </body>
 </html>

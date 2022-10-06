@@ -7,8 +7,9 @@ include "config/database.php";
 $db = new Database();
 $con = $db->conectar();
 
-$yesno = "hidden";
-$id = 0;
+
+
+
 
 //control de roles por session 
 if (!isset($_SESSION['rol'])) {
@@ -29,29 +30,31 @@ if (isset($_POST['cerrar'])) {
 
 
 //-----------------------------
-//Buscar vendedor
+//Buscar cliente
 if (isset($_POST['buscar'])) {
 
-    $cedula = $_POST['cedula'];
+    $id = $_POST['id'];
 
-    $consulta = "SELECT * FROM usuario Where ci = $cedula";
+    $consulta = "SELECT * FROM vehiculo Where id = $id";
     $resultado = mysqli_query($con, $consulta);
 
     //Si existe en base de datos -------
     if ($fila = mysqli_fetch_assoc($resultado)) {
 
-        if ($fila['rol'] == 2) {
-            $id     = $fila['cedula'];
-            header("location: mostrarvendedor.php?cedula=$cedula");
-        } else {
-            $alert = "Es un administrador no se puede modificar";
-        }
+
+        $id_fila     = $fila['id'];
+        header("location: mostrarvehiculo.php?id=$id_fila");
+ 
     } else {
 
-        $alert = "El vendedor no existe Puede agregarlo";
-        header("location: agregarvendedor.php?cedula=$cedula");
+        $alert = "El vehiculo no existe Puede agregarlo";
+        header("location: agregarvehiculo.php");
     }
 }
+
+
+
+
 
 
 ?>
@@ -65,7 +68,7 @@ if (isset($_POST['buscar'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styles.css">
-    <title>Buscar Vendedor</title>
+    <title>Buscar Vehiculo</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"><!-- Bootstrap CSS -->
 
@@ -86,19 +89,18 @@ if (isset($_POST['buscar'])) {
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header">
-                                        <h3 class="text-center font-weight-light my-4">Buscar Vendedor</h3>
+                                        <h3 class="text-center font-weight-light my-4">Buscar Vehiculo</h3>
                                     </div>
                                     <div class="card-body">
                                         <form method="POST">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputEmailAddress">Cedula</label>
-                                                <input class="form-control py-4" name="cedula" required="required" type="number" placeholder="Ingrese Cedula" />
+                                                <label class="small mb-1" for="inputEmailAddress">ID</label>
+                                                <input class="form-control py-4" name="id" required="required" type="number" placeholder="Ingresa id de vehiculo" />
                                             </div>
                                             <div class="form-group mt-4 mb-0">
                                                 <button class="btn btn-primary btn-block" name="buscar">Buscar</button>
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
